@@ -15,9 +15,9 @@ export const getAllUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT * FROM Administradores WHERE num_empleado = ?", [req.params.id_admin])
+        const [rows] = await conn.query("SELECT * FROM Usuarios WHERE id_usuario = ?", [req.params.id_usuario])
     
-        if (rows.length <= 0) return res.status(404).json({message: "Admin not found"});
+        if (rows.length <= 0) return res.status(404).json({message: "User not found"});
 
         res.json(rows[0]);
 
