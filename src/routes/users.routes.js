@@ -8,6 +8,6 @@ router.get('/admins/:id_usuario', getUser);
 router.post('/admins', createUser);
 router.patch('/admins/:id_usuario', updateUser);
 router.delete('/admins/:id_usuario', deleteUser);
-router.get('/admins/:usuario:contrasena', loginUser);
+router.get('/admins/:usuario/:contrasena', loginUser);
 
 export default router;
