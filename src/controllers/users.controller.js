@@ -30,7 +30,10 @@ export const getUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT * FROM Usuarios WHERE usuario = ? AND contrasenna = ?", [req.params.usario, req.params.contrasena])
+
+        const {usuario, contrasena} = req.params;
+
+        const [rows] = await conn.query("SELECT * FROM Usuarios WHERE usuario = ? AND contrasena = ?", [usuario, contrasena])
     
         if (rows.length <= 0) return res.status(404).json({message: "User not found"});
 
