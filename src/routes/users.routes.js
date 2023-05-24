@@ -3,7 +3,7 @@ import { getAllUsers, getUser, loginUser, createUser, updateUser, deleteUser } f
 
 const router = Router();
 
-router.get('/users/:id_tipoUsuario', getAllUsers);
+router.get('/users/byKindUser/:id_tipoUsuario', getAllUsers);
 router.get('/users/:id_usuario', getUser);
 router.post('/users', createUser);
 router.patch('/users/:id_usuario', updateUser);
