@@ -2,8 +2,7 @@ import { conn } from "../db.js ";
 
 export const getAllUsers = async (req, res) => {
     try {
-        
-        const [rows] = await conn.query("SELECT * FROM Administradores")
+        const [rows] = await conn.query("SELECT * FROM Usuarios WHERE id_tipoUsuario = ?", [req.params.id_tipoUsuario])
         res.json(rows);
 
     } catch (error) {
@@ -99,11 +98,11 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
     try {
         
-        const [result] = await conn.query("DELETE FROM Administradores WHERE id_admin = ?", [req.params.id_admin])
+        const [result] = await conn.query("DELETE FROM Usuarios WHERE id_usuario = ?", [req.params.id_usuario])
 
         if (result.affectedRows <= 0) return res.status(404).json({message: "Admin not found"})
 
-        res.status(200).json({message: "Admin deleted"})
+        res.status(200).json({message: "User deleted"})
 
     } catch (error) {
         return res.status(500).json({
