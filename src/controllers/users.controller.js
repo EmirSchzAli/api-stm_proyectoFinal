@@ -48,11 +48,11 @@ export const loginUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     
-    const {fb_id, num_empleado, nombre,correo, id_tipoAdmin} = req.body
+    const {usuario, contrasena, nombre, apellido, cedula, edad, id_tipoUsuario} = req.body
     console.log(req.body);
     try {
 
-        const [rows] = await conn.query("INSERT INTO Administradores (fb_id, num_empleado, nombre, correo, id_tipoAdmin) VALUES (?,?,?,?,?)", [fb_id, num_empleado, nombre, correo, id_tipoAdmin])
+        const [rows] = await conn.query("INSERT INTO Usuarios (usuario,contrasena,nombre,apellido,cedula,edad,id_tipoUsuario) VALUES (?,?,?,?,?,?,?)", [usuario, contrasena, nombre, apellido, cedula, edad, id_tipoUsuario])
         
         /*res.send({
             id: rows.insertId,
