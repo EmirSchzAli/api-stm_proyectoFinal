@@ -2,7 +2,7 @@ import { conn } from "../db.js ";
 
 export const getAllPrescription = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT R.id_receta, M.nombre as 'medico_nombre', M.apellido as 'medico_apellido', P.nombre as 'paciente_nombre', P.apellido as 'paciente_apellido', R.indicaciones, R.fecha_expedicion FROM ((Recetas R INNER JOIN Usuarios M ON R.id_medico = M.id_usuario) INNER JOIN Usuarios P ON R.id_paciente = P.id_usuario)")
+        const [rows] = await conn.query("SELECT R.id_receta, M.nombre as 'medico_nombre', M.apellido as 'medico_apellido', P.nombre as 'paciente_nombre', P.apellido as 'paciente_apellido', R.indicaciones, R.indicaciones_tp, R.fecha_expedicion FROM Recetas R INNER JOIN Usuarios M ON R.id_medico = M.id_usuario INNER JOIN Usuarios P ON R.id_paciente = P.id_usuario")
         
         res.json(rows);
 
@@ -15,7 +15,7 @@ export const getAllPrescription = async (req, res) => {
 
 export const getByPatient = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT R.id_receta, M.nombre as 'medico_nombre', M.apellido as 'medico_apellido', P.nombre as 'paciente_nombre', P.apellido as 'paciente_apellido', R.indicaciones, R.fecha_expedicion FROM Recetas R INNER JOIN Usuarios M ON R.id_medico = M.id_usuario INNER JOIN Usuarios P ON R.id_paciente = P.id_usuario WHERE P.id_usuario = ?", [req.params.id_paciente])
+        const [rows] = await conn.query("SELECT R.id_receta, M.nombre as 'medico_nombre', M.apellido as 'medico_apellido', P.nombre as 'paciente_nombre', P.apellido as 'paciente_apellido', R.indicaciones, R.indicaciones_tp, R.fecha_expedicion FROM Recetas R INNER JOIN Usuarios M ON R.id_medico = M.id_usuario INNER JOIN Usuarios P ON R.id_paciente = P.id_usuario WHERE P.id_usuario = ?", [req.params.id_paciente])
         
         res.json(rows);
 
