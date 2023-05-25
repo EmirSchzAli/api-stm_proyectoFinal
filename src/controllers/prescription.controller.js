@@ -32,7 +32,7 @@ export const createPrescription = async (req, res) => {
     console.log(req.body);
     try {
 
-        const [rows] = await conn.query("INSERT INTO Recetas (id_medico, id_paciente, indicaciones, indicaciones_tp, fecha_expedicion) VALUES (?,?,?,?)", [id_medico, id_paciente, indicaciones, indicaciones_tp, fecha_expedicion])
+        const [rows] = await conn.query("INSERT INTO Recetas (id_medico, id_paciente, indicaciones, indicaciones_tp, fecha_expedicion) VALUES (?,?,?,?,?)", [id_medico, id_paciente, indicaciones, indicaciones_tp, fecha_expedicion])
         
         /*res.send({
             id: rows.insertId,
