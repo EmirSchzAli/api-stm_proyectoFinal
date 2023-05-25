@@ -12,3 +12,30 @@ export const getAllPrescription = async (req, res) => {
         })
     }
 };
+
+export const createPrescription = async (req, res) => {
+    
+    const {id_medico, id_paciente, indicaciones, fecha_expedicion} = req.body
+    console.log(req.body);
+    try {
+
+        const [rows] = await conn.query("INSERT INTO Recetas (id_medico, id_paciente, indicaciones, fecha_expedicion) VALUES (?,?,?,?)", [id_medico, id_paciente, indicaciones, fecha_expedicion])
+        
+        /*res.send({
+            id: rows.insertId,
+            fb_id,
+            num_empleado,
+            nombre,
+            correo,
+            id_tipoAdmin
+        });*/
+        console.log(rows);
+        res.status(201).json({
+            id: rows.insertId
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong!'
+        })
+    }
+};
